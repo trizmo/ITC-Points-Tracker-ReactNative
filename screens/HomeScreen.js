@@ -42,17 +42,14 @@ export default class HomeScreen extends Component {
     // const { navigate } = this.props.navigation;
     return (
 
-      <Container style={styles.mainContainer}>
+      <Container style={styles.gridContainer}>
         <Grid>
-          <Row>
+          <Row style={styles.rowContainer}>
             {this.state.fontLoaded ? (
               <View>
                 <Button
                   onPress={() => { this.props.navigation.navigate("Settings") }}
                 >
-                  <Text>Settings</Text>
-                </Button>
-                <Button>
                   <Text>Start</Text>
                 </Button>
               </View>
@@ -67,10 +64,12 @@ export default class HomeScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    display: "flex",
+  rowContainer: {
     justifyContent: "space-around",
-    alignItems: "center"
+  },
+  gridContainer: {
+    display: "flex",
+    alignContent: "center",
   },
 
 

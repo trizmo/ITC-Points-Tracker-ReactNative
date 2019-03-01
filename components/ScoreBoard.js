@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
-import { Container } from 'native-base';
-import { Grid, Col } from 'react-native-easy-grid';
+import { StyleSheet } from 'react-native';
+import { Container, Text, Button } from 'native-base';
+import { Grid, Row, Col } from 'react-native-easy-grid';
 
 import { AppConsumer } from '../storage/AppContext';
 
 export default class ScoreBoard extends Component {
+
+  
+
+
   render() {
     return (
 
@@ -13,12 +17,18 @@ export default class ScoreBoard extends Component {
         {(context) => (
           <Container>
             <Grid>
-              <Col>
-                <Text>P1: {context.state.playerOne.points} </Text>
-              </Col>
-              <Col>
-                <Text>P2: {context.state.playerTwo.points} </Text>
-              </Col>
+              <Row>
+
+                <Col>
+                  <Text style={styles.points}>P1: {context.state.playerOne.points} </Text>
+                </Col>
+
+                <Col>
+                  <Text style={styles.points}>P2: {context.state.playerTwo.points} </Text>
+                </Col>
+
+              </Row>
+
             </Grid>
           </Container>
         )}
@@ -26,3 +36,10 @@ export default class ScoreBoard extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  points: {
+    fontSize: 22,
+    color: "black"
+  }
+})

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Container, Content, Button, Text } from 'native-base';
+import { Container, Content, Button, Text, ListItem, CheckBox, Body } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 
 import ScoreBoard from '../components/ScoreBoard'
@@ -10,7 +10,7 @@ import { AppConsumer } from '../storage/AppContext'
 export default class RoundOneScreen extends Component {
 
   static navigationOptions = {
-    title: 'ROUND ONE',
+    title: 'Player One: ROUND ONE',
     headerTintColor: '#ffffff',
     headerStyle: {
       backgroundColor: '#1e8fb5',
@@ -26,30 +26,81 @@ export default class RoundOneScreen extends Component {
 
   render() {
     return (
-      <AppConsumer>
-        {(context) => {
-          <Container>
+      <Container>
+
+        <ScoreBoard />
+
+        <AppConsumer>
+          {(context) => (
             <Content>
 
-              <Grid>
-                <Row>
-                  <ScoreBoard />
-                </Row>
-                {/* <Row>
-                  <Button
-                    onPress={() => { context.incrementScore() }}
-                    >
-                    <Text>
-                      increment p1 score
-                    </Text>
-                  </Button>
+              
+              <ListItem>
+                <CheckBox 
+                checked={context.state.playerOne.roundOne_killOne}
+                onPress={() => {
+                  context.setCheck("Kill 1")
+                }}
+                />
+                <Body>
+                  <Text>Kill 1</Text>
+                </Body>
+              </ListItem>
 
-                </Row> */}
-              </Grid>
+              <ListItem>
+                <CheckBox 
+                checked={context.state.playerOne.roundOne_holdOne}
+                onPress={() => {
+                  context.setCheck("Hold One")
+                }}
+                />
+                <Body>
+                  <Text>Hold One</Text>
+                </Body>
+              </ListItem>
+
+              <ListItem>
+                <CheckBox 
+                checked={context.state.playerOne.roundOne_holdMore}
+                onPress={() => {
+                  context.setCheck("Hold More")
+                }}
+                />
+                <Body>
+                  <Text>Hold More</Text>
+                </Body>
+              </ListItem>
+
+              <ListItem>
+                <CheckBox 
+                checked={context.state.playerOne.roundOne_killMore}
+                onPress={() => {
+                  context.setCheck("Kill More")
+                }}
+                />
+                <Body>
+                  <Text>Kill More</Text>
+                </Body>
+              </ListItem>
+
+              <ListItem>
+                <CheckBox 
+                checked={context.state.playerOne.roundOne_bonusObjective}
+                onPress={() => {
+                  context.setCheck("Bonus Objectives")
+                }}
+                />
+                <Body>
+                  <Text>Bonus Objectives</Text>
+                </Body>
+              </ListItem>
+
+
             </Content>
-          </Container>
-        }}
-      </AppConsumer>
+          )}
+        </AppConsumer>
+
+      </Container>
     )
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, StyleSheet } from 'react-native'
 import { Container, Content, Form, Item, Input, Button, Picker } from 'native-base';
 
 import { AppConsumer } from '../storage/AppContext'
@@ -26,7 +26,7 @@ export default class SettingsScreen extends Component {
   }
 
   onValueChangeP1FirstSecondary(value) {
-    const playerOne = {...this.state.playerOne}
+    const playerOne = { ...this.state.playerOne }
     playerOne.firstSecondary = value
     this.setState({
       playerOne
@@ -34,7 +34,7 @@ export default class SettingsScreen extends Component {
   }
 
   onValueChangeP1SecondSecondary(value) {
-    const playerOne = {...this.state.playerOne}
+    const playerOne = { ...this.state.playerOne }
     playerOne.secondSecondary = value
     this.setState({
       playerOne
@@ -42,7 +42,7 @@ export default class SettingsScreen extends Component {
   }
 
   onValueChangeP1ThirdSecondary(value) {
-    const playerOne = {...this.state.playerOne}
+    const playerOne = { ...this.state.playerOne }
     playerOne.thirdSecondary = value
     this.setState({
       playerOne
@@ -50,7 +50,7 @@ export default class SettingsScreen extends Component {
   }
 
   onValueChangeP2FirstSecondary(value) {
-    const playerTwo = {...this.state.playerTwo}
+    const playerTwo = { ...this.state.playerTwo }
     playerTwo.firstSecondary = value
     this.setState({
       playerTwo
@@ -58,7 +58,7 @@ export default class SettingsScreen extends Component {
   }
 
   onValueChangeP2SecondSecondary(value) {
-    const playerTwo = {...this.state.playerTwo}
+    const playerTwo = { ...this.state.playerTwo }
     playerTwo.secondSecondary = value
     this.setState({
       playerTwo
@@ -66,7 +66,7 @@ export default class SettingsScreen extends Component {
   }
 
   onValueChangeP2ThirdSecondary(value) {
-    const playerTwo = {...this.state.playerTwo}
+    const playerTwo = { ...this.state.playerTwo }
     playerTwo.thirdSecondary = value
     this.setState({
       playerTwo
@@ -90,9 +90,9 @@ export default class SettingsScreen extends Component {
 
   render() {
     return (
-      <AppConsumer>
-        {(context) => (
-          <Container>
+      <Container>
+        <AppConsumer>
+          {(context) => (
 
             <Content>
               <Form>
@@ -101,7 +101,7 @@ export default class SettingsScreen extends Component {
                     placeholder="Player One Name"
                     value={this.state.playerOne.name}
                     onChangeText={(text) => {
-                      const playerOne = {...this.state.playerOne}
+                      const playerOne = { ...this.state.playerOne }
                       playerOne.name = text
                       this.setState({ playerOne })
                     }}
@@ -184,7 +184,7 @@ export default class SettingsScreen extends Component {
                     placeholder="Player Two Name"
                     value={this.state.playerTwo.name}
                     onChangeText={(text) => {
-                      const playerTwo = {...this.state.playerTwo};
+                      const playerTwo = { ...this.state.playerTwo };
                       playerTwo.name = text
                       this.setState({ playerTwo })
                     }}
@@ -264,6 +264,9 @@ export default class SettingsScreen extends Component {
 
 
                 <Button
+                style={styles.button}
+                primary
+                block
                   onPress={() => {
                     context.setSecondaries(this.state);
                     console.log(this.state);
@@ -280,14 +283,18 @@ export default class SettingsScreen extends Component {
 
 
               </Form>
-              {context.state.playerOne.name ? (
-                <Text>{context.state.playerOne.name}</Text>
-              ) : (console.log(""))}
 
             </Content>
-          </Container>
-        )}
-      </AppConsumer>
+          )}
+        </AppConsumer>
+      </Container>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  button: {
+    margin: 5,
+  },
+});
+
