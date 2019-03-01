@@ -1,14 +1,24 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet} from 'react-native';
 
-export default class App extends React.Component {
+// navigation
+import NavigationContainer from './navigation/NavigationContainer'
+
+// context
+import AppProvider from './storage/AppContext';
+
+export default class App extends Component {
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+
+        <AppProvider>
+          <NavigationContainer />
+        </AppProvider>
+        
     );
   }
+
 }
 
 const styles = StyleSheet.create({
