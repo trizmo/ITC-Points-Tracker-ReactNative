@@ -101,26 +101,9 @@ export default class AppProvider extends Component {
 
       default:
         console.log("no check")
-
-
-
+        
     }
   }
-
-
-
-  // set_roundOne_killOne = () => {
-  //   console.log("button works")
-  //   const playerOne = { ...this.state.playerOne } 
-  //   const newValue = !playerOne.roundOne_killOne
-  //   console.log("old value: " + newValue)
-  //   playerOne.roundOne_killOne = newValue
-  //   console.log("new value: " + newValue)
-  //   this.setState({
-  //     playerOne
-  //   }, (console.log(this.state.playerOne))
-  //   )
-  // }
 
   setSecondaries = (setUp) => {
     let state = { ...this.state };

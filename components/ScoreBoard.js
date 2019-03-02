@@ -7,12 +7,8 @@ import { AppConsumer } from '../storage/AppContext';
 
 export default class ScoreBoard extends Component {
 
-  
-
-
   render() {
     return (
-
       <AppConsumer>
         {(context) => (
           <Container>
@@ -28,7 +24,6 @@ export default class ScoreBoard extends Component {
                 </Col>
 
               </Row>
-
             </Grid>
           </Container>
         )}

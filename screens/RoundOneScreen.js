@@ -3,9 +3,11 @@ import { StyleSheet, View } from 'react-native';
 import { Container, Content, Button, Text, ListItem, CheckBox, Body } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 
+// components
 import ScoreBoard from '../components/ScoreBoard'
-import { AppConsumer } from '../storage/AppContext'
 
+// context
+import { AppConsumer } from '../storage/AppContext'
 
 export default class RoundOneScreen extends Component {
 
@@ -22,25 +24,20 @@ export default class RoundOneScreen extends Component {
     },
   };
 
-
-
   render() {
     return (
       <Container>
-
         <ScoreBoard />
-
         <AppConsumer>
           {(context) => (
             <Content>
 
-              
               <ListItem>
-                <CheckBox 
-                checked={context.state.playerOne.roundOne_killOne}
-                onPress={() => {
-                  context.setCheck("Kill 1")
-                }}
+                <CheckBox
+                  checked={context.state.playerOne.roundOne_killOne}
+                  onPress={() => {
+                    context.setCheck("Kill 1")
+                  }}
                 />
                 <Body>
                   <Text>Kill 1</Text>
@@ -48,11 +45,11 @@ export default class RoundOneScreen extends Component {
               </ListItem>
 
               <ListItem>
-                <CheckBox 
-                checked={context.state.playerOne.roundOne_holdOne}
-                onPress={() => {
-                  context.setCheck("Hold One")
-                }}
+                <CheckBox
+                  checked={context.state.playerOne.roundOne_holdOne}
+                  onPress={() => {
+                    context.setCheck("Hold One")
+                  }}
                 />
                 <Body>
                   <Text>Hold One</Text>
@@ -60,11 +57,11 @@ export default class RoundOneScreen extends Component {
               </ListItem>
 
               <ListItem>
-                <CheckBox 
-                checked={context.state.playerOne.roundOne_holdMore}
-                onPress={() => {
-                  context.setCheck("Hold More")
-                }}
+                <CheckBox
+                  checked={context.state.playerOne.roundOne_holdMore}
+                  onPress={() => {
+                    context.setCheck("Hold More")
+                  }}
                 />
                 <Body>
                   <Text>Hold More</Text>
@@ -72,11 +69,11 @@ export default class RoundOneScreen extends Component {
               </ListItem>
 
               <ListItem>
-                <CheckBox 
-                checked={context.state.playerOne.roundOne_killMore}
-                onPress={() => {
-                  context.setCheck("Kill More")
-                }}
+                <CheckBox
+                  checked={context.state.playerOne.roundOne_killMore}
+                  onPress={() => {
+                    context.setCheck("Kill More")
+                  }}
                 />
                 <Body>
                   <Text>Kill More</Text>
@@ -84,22 +81,20 @@ export default class RoundOneScreen extends Component {
               </ListItem>
 
               <ListItem>
-                <CheckBox 
-                checked={context.state.playerOne.roundOne_bonusObjective}
-                onPress={() => {
-                  context.setCheck("Bonus Objectives")
-                }}
+                <CheckBox
+                  checked={context.state.playerOne.roundOne_bonusObjective}
+                  onPress={() => {
+                    context.setCheck("Bonus Objectives")
+                  }}
                 />
                 <Body>
                   <Text>Bonus Objectives</Text>
                 </Body>
               </ListItem>
 
-
             </Content>
           )}
         </AppConsumer>
-
       </Container>
     )
   }
