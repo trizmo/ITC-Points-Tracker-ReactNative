@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "headhunter",
+    "description": "Headhunter: 1pt for each enemy Character that is destroyed."
+  },
+  {
+    "id": 1,
+    "name": "kingslayer",
+    "description": "*Kingslayer: 1 point for every 2 wounds to enemy character non-monster or vehicle and 1 point for every 4 wounds to character with vehicle or monster keyword."
+  },
+  {
+    "id": 1,
+    "name": "markedForDeath",
+    "description": "*Marked for Death: Choose 4 of your opponent’s units with a Power Level of 7+. Earn 1 pt for each of these units destroyed."
+  },
+  {
+    "id": 1,
+    "name": "bigGameHunter",
+    "description": "*Big Game Hunter: 1 point for every enemy model with the Monster or Vehicle keyword and 7+ wounds destroyed."
+  },
+  {
+    "id": 1,
+    "name": "titanSlayer",
+    "description": "*Titan Slayers: For every 8 wounds lost by enemy units with the Titanic keyword in total throughout the course of the game, earn 1 point."
+  },
+  {
+    "id": 1,
+    "name": "reaper",
+    "description": "The Reaper: For every 20 enemy models destroyed, earn 1 point."
+  },
+  {
+    "id": 1,
+    "name": "recon",
+    "description": "Recon: Have a unit at least partially in each table quarter at the end of your player turn."
+  },
+  {
+    "id": 1,
+    "name": "behindEnemyLines",
+    "description": "Behind Enemy Lines: If at least one of your units is wholly in the enemy Deployment Zone at the start of your turn, earn 1 Point."
+  },
+  {
+    "id": 1,
+    "name": "butchersBill",
+    "description": "The Butcher’s Bill: Destroy 2+ enemy units during a player turn to earn 1 Point."
+  },
+  {
+    "id": 1,
+    "name": "groundControl",
+    "description": "Ground Control: Earn 1 point for each objective held at the end of the last Battle Round played."
+  },
+  {
+    "id": 1,
+    "name": "oldSchool",
+    "description": "Old School: Earn 1 point for the following: First Strike, Slay the Warlord, Linebreaker, Last Strike"
+  },
+]
