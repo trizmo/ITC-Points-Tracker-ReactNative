@@ -38,96 +38,75 @@ export default class AppProvider extends Component {
         roundOne_killMore: false,
         roundOne_bonusObjective: false,
       }
-
     }
-
   }
 
   setCheck = (value, player) => {
-    let playerData = { ...this.state[player] } 
+    let stateObject = { ...this.state }
     let newValue = "";
     console.log(value, player)
 
-    switch(value) {
-      
+    switch (value) {
+
       case "Kill 1":
-      newValue = ![player].roundOne_killOne
-      playerData.roundOne_killOne = newValue
-      console.log(newValue)
-      this.setState({
-        playerData
-      }, ()=> (console.log(this.state.playOne.roundOne_killOne)))
-      break;
+        newValue = !stateObject[player].roundOne_killOne
+        stateObject[player].roundOne_killOne = newValue
+        this.setState(stateObject)
+        break;
 
       case "Hold One":
-      newValue = ![player].roundOne_holdOne
-      playerData.roundOne_holdOne = newValue
-      this.setState({
-        playerData
-      })
-      break;
+        newValue = !stateObject[player].roundOne_holdOne
+        stateObject[player].roundOne_holdOne = newValue
+        this.setState(stateObject)
+        break;
 
       case "Hold More":
-      newValue = ![player].roundOne_holdMore
-      playerData.roundOne_holdMore = newValue
-      this.setState({
-        playerData
-      })
-      break;
+        newValue = !stateObject[player].roundOne_holdMore
+        stateObject[player].roundOne_holdMore = newValue
+        this.setState(stateObject)
+        break;
 
       case "Kill More":
-      newValue = ![player].roundOne_killMore
-      playerData.roundOne_killMore = newValue
-      this.setState({
-        playerData
-      })
-      break;
+        newValue = !stateObject[player].roundOne_killMore
+        stateObject[player].roundOne_killMore = newValue
+        this.setState(stateObject)
+        break;
 
       case "Bonus Objectives":
-      newValue = ![player].roundOne_bonusObjective
-      playerData.roundOne_bonusObjective = newValue
-      this.setState({
-        playerData
-      })
-      break;
+        newValue = !stateObject[player].roundOne_bonusObjective
+        stateObject[player].roundOne_bonusObjective = newValue
+        this.setState(stateObject)
+        break;
 
       default:
         console.log("no check")
-        
     }
   }
 
   setSecondaries = (data) => {
     // console.log(data)
-    const playerOne = { ...this.state.playerOne}
+    const playerOne = { ...this.state.playerOne }
     playerOne.name = data.playerOne.name
     playerOne.firstSecondary = data.playerOne.firstSecondary
     playerOne.secondSecondary = data.playerOne.secondSecondary
     playerOne.thirdSecondary = data.playerOne.thirdSecondary
 
-    const playerTwo = { ...this.state.playerTwo}
+    const playerTwo = { ...this.state.playerTwo }
     playerTwo.name = data.playerTwo.name
     playerTwo.firstSecondary = data.playerTwo.firstSecondary
     playerTwo.secondSecondary = data.playerTwo.secondSecondary
     playerTwo.thirdSecondary = data.playerTwo.thirdSecondary
 
-    this.setState({playerOne}, () => {
+    this.setState({ playerOne }, () => {
       console.log("===== Player One")
       console.log(this.state.playerOne)
       console.log("=====")
     })
-    this.setState({playerTwo}, () => {
+    this.setState({ playerTwo }, () => {
       console.log("===== Player Two")
       console.log(this.state.playerTwo)
       console.log("=====")
     })
-
-    
-
-    // let currentSecondary = { ...this.state.playerOne[secondary] };
-    // currentSecondary = value
-    // this.setState({ currentSecondary }, (console.log(this.state)));
-
   };
 
   incrementScore = () => {
@@ -146,9 +125,6 @@ export default class AppProvider extends Component {
     })
   }
 
-
-
-
   render() {
     return (
       <AppContext.Provider value={{
@@ -163,6 +139,4 @@ export default class AppProvider extends Component {
       </AppContext.Provider>
     )
   }
-
-
 }

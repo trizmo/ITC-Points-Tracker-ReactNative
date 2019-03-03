@@ -27,7 +27,11 @@ export default class RoundOneScreen extends Component {
   render() {
     return (
       <Container>
+      <Grid>
+        <Row size={15}>
         <ScoreBoard />
+        </Row>
+        <Row size={85}>
         <AppConsumer>
           {(context) => (
             <Content>
@@ -155,10 +159,15 @@ export default class RoundOneScreen extends Component {
                   <Text>Bonus Objectives</Text>
                 </Body>
               </ListItem>
-
             </Content>
           )}
         </AppConsumer>
+
+        </Row>
+      </Grid>
+
+
+        
       </Container>
     )
   }
