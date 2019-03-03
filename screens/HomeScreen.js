@@ -14,6 +14,8 @@ export default class HomeScreen extends Component {
     }
   }
 
+  // async/await issue for default font for native-base
+  // see if possible to switch to a standard font to get rid of async/await issue
   async componentWillMount() {
     await Expo.Font.loadAsync({
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
@@ -22,7 +24,6 @@ export default class HomeScreen extends Component {
     });
     this.setState({ fontLoaded: true })
   }
-
 
   static navigationOptions = {
     title: 'ITC Points Tracker',
@@ -37,22 +38,19 @@ export default class HomeScreen extends Component {
     },
   };
 
-
   render() {
     // const { navigate } = this.props.navigation;
     return (
 
-      <Container style={styles.mainContainer}>
+      <Container style={styles.gridContainer}>
         <Grid>
-          <Row>
+          <Row style={styles.rowContainer}>
+
             {this.state.fontLoaded ? (
               <View>
                 <Button
                   onPress={() => { this.props.navigation.navigate("Settings") }}
                 >
-                  <Text>Settings</Text>
-                </Button>
-                <Button>
                   <Text>Start</Text>
                 </Button>
               </View>
@@ -67,12 +65,11 @@ export default class HomeScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    display: "flex",
+  rowContainer: {
     justifyContent: "space-around",
-    alignItems: "center"
   },
-
-
-
+  gridContainer: {
+    display: "flex",
+    alignContent: "center",
+  },
 });

@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { Container, Content, Form, Item, Input, Button, Picker } from 'native-base';
 
+import Nextbutton from '../components/NextButton'
+
+// context
 import { AppConsumer } from '../storage/AppContext'
+
 
 export default class SettingsScreen extends Component {
   constructor(props) {
@@ -10,23 +14,24 @@ export default class SettingsScreen extends Component {
     this.state = {
       playerOne: {
         name: "",
-        points: 0,
         firstSecondary: "",
         secondSecondary: "",
         thirdSecondary: "",
       },
+
       playerTwo: {
         name: "",
-        points: 0,
         firstSecondary: "",
         secondSecondary: "",
         thirdSecondary: "",
       }
+
     }
   }
 
-  onValueChangeP1FirstSecondary(value) {
-    const playerOne = {...this.state.playerOne}
+  onValueChangeP1FirstSecondary = (value) => {
+
+    const playerOne = { ...this.state.playerOne }
     playerOne.firstSecondary = value
     this.setState({
       playerOne
@@ -34,7 +39,7 @@ export default class SettingsScreen extends Component {
   }
 
   onValueChangeP1SecondSecondary(value) {
-    const playerOne = {...this.state.playerOne}
+    const playerOne = { ...this.state.playerOne }
     playerOne.secondSecondary = value
     this.setState({
       playerOne
@@ -42,7 +47,7 @@ export default class SettingsScreen extends Component {
   }
 
   onValueChangeP1ThirdSecondary(value) {
-    const playerOne = {...this.state.playerOne}
+    const playerOne = { ...this.state.playerOne }
     playerOne.thirdSecondary = value
     this.setState({
       playerOne
@@ -50,7 +55,7 @@ export default class SettingsScreen extends Component {
   }
 
   onValueChangeP2FirstSecondary(value) {
-    const playerTwo = {...this.state.playerTwo}
+    const playerTwo = { ...this.state.playerTwo }
     playerTwo.firstSecondary = value
     this.setState({
       playerTwo
@@ -58,7 +63,7 @@ export default class SettingsScreen extends Component {
   }
 
   onValueChangeP2SecondSecondary(value) {
-    const playerTwo = {...this.state.playerTwo}
+    const playerTwo = { ...this.state.playerTwo }
     playerTwo.secondSecondary = value
     this.setState({
       playerTwo
@@ -66,7 +71,7 @@ export default class SettingsScreen extends Component {
   }
 
   onValueChangeP2ThirdSecondary(value) {
-    const playerTwo = {...this.state.playerTwo}
+    const playerTwo = { ...this.state.playerTwo }
     playerTwo.thirdSecondary = value
     this.setState({
       playerTwo
@@ -75,7 +80,7 @@ export default class SettingsScreen extends Component {
 
 
   static navigationOptions = {
-    title: 'Settings',
+    title: 'SELECT SECONDARIES',
     headerTintColor: '#ffffff',
     headerStyle: {
       backgroundColor: '#1e8fb5',
@@ -90,25 +95,28 @@ export default class SettingsScreen extends Component {
 
   render() {
     return (
-      <AppConsumer>
-        {(context) => (
-          <Container>
-
+      <Container>
+        <AppConsumer>
+          {(context) => (
             <Content>
               <Form>
+
                 <Item floatingLabel>
                   <Input
                     placeholder="Player One Name"
                     value={this.state.playerOne.name}
                     onChangeText={(text) => {
-                      const playerOne = {...this.state.playerOne}
+                      const playerOne = { ...this.state.playerOne };
                       playerOne.name = text
                       this.setState({ playerOne })
+
+
+                      // let playerOneName = { ...this.state.playerOne.name };
+                      // playerOneName = text;
+                      // context.setNameP1(playerOneName)
                     }}
                   />
                 </Item>
-
-
 
                 <Item picker>
                   <Picker
@@ -117,17 +125,12 @@ export default class SettingsScreen extends Component {
                     selectedValue={this.state.playerOne.firstSecondary}
                     onValueChange={this.onValueChangeP1FirstSecondary.bind(this)}
                   >
+
                     <Picker.Item label="Select First Secondary" value="" />
-                    <Picker.Item label="*Kingslayer: 1 point for every 2 wounds to enemy character non-monster or vehicle and 1 point for every 4 wounds to character with vehicle or monster keyword.   " value="kingslayer" />
-                    <Picker.Item label="*Marked for Death: Choose 4 of your opponent’s units with a Power Level of 7+. Earn 1 pt for each of these units destroyed." value="markedForDeath" />
-                    <Picker.Item label="Big Game Hunter: 1 point for every enemy model with the Monster or Vehicle keyword and 7+ wounds destroyed." value="bigGameHunter" />
-                    <Picker.Item label="*Titan Slayers: For every 8 wounds lost by enemy units with the Titanic keyword in total throughout the course of the game, earn 1 point. " value="titanSlayer" />
-                    <Picker.Item label="The Reaper: For every 20 enemy models destroyed, earn 1 point." value="reaper" />
-                    <Picker.Item label="Recon: Have a unit at least partially in each table quarter at the end of your player turn." value="recon" />
-                    <Picker.Item label="Behind Enemy Lines: If at least one of your units is wholly in the enemy Deployment Zone at the start of your turn, earn 1 Point." value="behindEnemyLines" />
-                    <Picker.Item label="The Butcher’s Bill: Destroy 2+ enemy units during a player turn to earn 1 Point." value="butchersBill" />
-                    <Picker.Item label="Ground Control: Earn 1 point for each objective held at the end of the last Battle Round played." value="groundControl" />
-                    <Picker.Item label="Old School: Earn 1 point for the following: First Strike, Slay the Warlord, Linebreaker, Last Strike" value="oldSchool" />
+
+                    {context.state.Secondaries.map(secondary => (
+                      <Picker.Item key={secondary.id} label={secondary.description} value={secondary.name} />
+                    ))}
 
                   </Picker>
                 </Item>
@@ -140,17 +143,10 @@ export default class SettingsScreen extends Component {
                     onValueChange={this.onValueChangeP1SecondSecondary.bind(this)}
                   >
                     <Picker.Item label="Select Second Secondary" value="" />
-                    <Picker.Item label="Headhunter: 1pt for each enemy Character that is destroyed." value="headhunter" />
-                    <Picker.Item label="*Kingslayer: 1 point for every 2 wounds to enemy character non-monster or vehicle and 1 point for every 4 wounds to character with vehicle or monster keyword.   " value="kingslayer" />
-                    <Picker.Item label="*Marked for Death: Choose 4 of your opponent’s units with a Power Level of 7+. Earn 1 pt for each of these units destroyed." value="markedForDeath" />
-                    <Picker.Item label="Big Game Hunter: 1 point for every enemy model with the Monster or Vehicle keyword and 7+ wounds destroyed." value="bigGameHunter" />
-                    <Picker.Item label="*Titan Slayers: For every 8 wounds lost by enemy units with the Titanic keyword in total throughout the course of the game, earn 1 point. " value="titanSlayer" />
-                    <Picker.Item label="The Reaper: For every 20 enemy models destroyed, earn 1 point." value="reaper" />
-                    <Picker.Item label="Recon: Have a unit at least partially in each table quarter at the end of your player turn." value="recon" />
-                    <Picker.Item label="Behind Enemy Lines: If at least one of your units is wholly in the enemy Deployment Zone at the start of your turn, earn 1 Point." value="behindEnemyLines" />
-                    <Picker.Item label="The Butcher’s Bill: Destroy 2+ enemy units during a player turn to earn 1 Point." value="butchersBill" />
-                    <Picker.Item label="Ground Control: Earn 1 point for each objective held at the end of the last Battle Round played." value="groundControl" />
-                    <Picker.Item label="Old School: Earn 1 point for the following: First Strike, Slay the Warlord, Linebreaker, Last Strike" value="oldSchool" />
+
+                    {context.state.Secondaries.map(secondary => (
+                      <Picker.Item key={secondary.id} label={secondary.description} value={secondary.name} />
+                    ))}
 
                   </Picker>
                 </Item>
@@ -163,17 +159,10 @@ export default class SettingsScreen extends Component {
                     onValueChange={this.onValueChangeP1ThirdSecondary.bind(this)}
                   >
                     <Picker.Item label="Select Third Secondary" value="" />
-                    <Picker.Item label="Headhunter: 1pt for each enemy Character that is destroyed." value="headhunter" />
-                    <Picker.Item label="*Kingslayer: 1 point for every 2 wounds to enemy character non-monster or vehicle and 1 point for every 4 wounds to character with vehicle or monster keyword.   " value="kingslayer" />
-                    <Picker.Item label="*Marked for Death: Choose 4 of your opponent’s units with a Power Level of 7+. Earn 1 pt for each of these units destroyed." value="markedForDeath" />
-                    <Picker.Item label="Big Game Hunter: 1 point for every enemy model with the Monster or Vehicle keyword and 7+ wounds destroyed." value="bigGameHunter" />
-                    <Picker.Item label="*Titan Slayers: For every 8 wounds lost by enemy units with the Titanic keyword in total throughout the course of the game, earn 1 point. " value="titanSlayer" />
-                    <Picker.Item label="The Reaper: For every 20 enemy models destroyed, earn 1 point." value="reaper" />
-                    <Picker.Item label="Recon: Have a unit at least partially in each table quarter at the end of your player turn." value="recon" />
-                    <Picker.Item label="Behind Enemy Lines: If at least one of your units is wholly in the enemy Deployment Zone at the start of your turn, earn 1 Point." value="behindEnemyLines" />
-                    <Picker.Item label="The Butcher’s Bill: Destroy 2+ enemy units during a player turn to earn 1 Point." value="butchersBill" />
-                    <Picker.Item label="Ground Control: Earn 1 point for each objective held at the end of the last Battle Round played." value="groundControl" />
-                    <Picker.Item label="Old School: Earn 1 point for the following: First Strike, Slay the Warlord, Linebreaker, Last Strike" value="oldSchool" />
+
+                    {context.state.Secondaries.map(secondary => (
+                      <Picker.Item key={secondary.id} label={secondary.description} value={secondary.name} />
+                    ))}
 
                   </Picker>
                 </Item>
@@ -184,7 +173,7 @@ export default class SettingsScreen extends Component {
                     placeholder="Player Two Name"
                     value={this.state.playerTwo.name}
                     onChangeText={(text) => {
-                      const playerTwo = {...this.state.playerTwo};
+                      const playerTwo = { ...this.state.playerTwo };
                       playerTwo.name = text
                       this.setState({ playerTwo })
                     }}
@@ -200,16 +189,10 @@ export default class SettingsScreen extends Component {
                     onValueChange={this.onValueChangeP2FirstSecondary.bind(this)}
                   >
                     <Picker.Item label="Select First Secondary" value="" />
-                    <Picker.Item label="*Kingslayer: 1 point for every 2 wounds to enemy character non-monster or vehicle and 1 point for every 4 wounds to character with vehicle or monster keyword.   " value="kingslayer" />
-                    <Picker.Item label="*Marked for Death: Choose 4 of your opponent’s units with a Power Level of 7+. Earn 1 pt for each of these units destroyed." value="markedForDeath" />
-                    <Picker.Item label="Big Game Hunter: 1 point for every enemy model with the Monster or Vehicle keyword and 7+ wounds destroyed." value="bigGameHunter" />
-                    <Picker.Item label="*Titan Slayers: For every 8 wounds lost by enemy units with the Titanic keyword in total throughout the course of the game, earn 1 point. " value="titanSlayer" />
-                    <Picker.Item label="The Reaper: For every 20 enemy models destroyed, earn 1 point." value="reaper" />
-                    <Picker.Item label="Recon: Have a unit at least partially in each table quarter at the end of your player turn." value="recon" />
-                    <Picker.Item label="Behind Enemy Lines: If at least one of your units is wholly in the enemy Deployment Zone at the start of your turn, earn 1 Point." value="behindEnemyLines" />
-                    <Picker.Item label="The Butcher’s Bill: Destroy 2+ enemy units during a player turn to earn 1 Point." value="butchersBill" />
-                    <Picker.Item label="Ground Control: Earn 1 point for each objective held at the end of the last Battle Round played." value="groundControl" />
-                    <Picker.Item label="Old School: Earn 1 point for the following: First Strike, Slay the Warlord, Linebreaker, Last Strike" value="oldSchool" />
+
+                    {context.state.Secondaries.map(secondary => (
+                      <Picker.Item key={secondary.id} label={secondary.description} value={secondary.name} />
+                    ))}
 
                   </Picker>
                 </Item>
@@ -222,17 +205,10 @@ export default class SettingsScreen extends Component {
                     onValueChange={this.onValueChangeP2SecondSecondary.bind(this)}
                   >
                     <Picker.Item label="Select Second Secondary" value="" />
-                    <Picker.Item label="Headhunter: 1pt for each enemy Character that is destroyed." value="headhunter" />
-                    <Picker.Item label="*Kingslayer: 1 point for every 2 wounds to enemy character non-monster or vehicle and 1 point for every 4 wounds to character with vehicle or monster keyword.   " value="kingslayer" />
-                    <Picker.Item label="*Marked for Death: Choose 4 of your opponent’s units with a Power Level of 7+. Earn 1 pt for each of these units destroyed." value="markedForDeath" />
-                    <Picker.Item label="Big Game Hunter: 1 point for every enemy model with the Monster or Vehicle keyword and 7+ wounds destroyed." value="bigGameHunter" />
-                    <Picker.Item label="*Titan Slayers: For every 8 wounds lost by enemy units with the Titanic keyword in total throughout the course of the game, earn 1 point. " value="titanSlayer" />
-                    <Picker.Item label="The Reaper: For every 20 enemy models destroyed, earn 1 point." value="reaper" />
-                    <Picker.Item label="Recon: Have a unit at least partially in each table quarter at the end of your player turn." value="recon" />
-                    <Picker.Item label="Behind Enemy Lines: If at least one of your units is wholly in the enemy Deployment Zone at the start of your turn, earn 1 Point." value="behindEnemyLines" />
-                    <Picker.Item label="The Butcher’s Bill: Destroy 2+ enemy units during a player turn to earn 1 Point." value="butchersBill" />
-                    <Picker.Item label="Ground Control: Earn 1 point for each objective held at the end of the last Battle Round played." value="groundControl" />
-                    <Picker.Item label="Old School: Earn 1 point for the following: First Strike, Slay the Warlord, Linebreaker, Last Strike" value="oldSchool" />
+
+                    {context.state.Secondaries.map(secondary => (
+                      <Picker.Item key={secondary.id} label={secondary.description} value={secondary.name} />
+                    ))}
 
                   </Picker>
                 </Item>
@@ -245,17 +221,10 @@ export default class SettingsScreen extends Component {
                     onValueChange={this.onValueChangeP2ThirdSecondary.bind(this)}
                   >
                     <Picker.Item label="Select Third Secondary" value="" />
-                    <Picker.Item label="Headhunter: 1pt for each enemy Character that is destroyed." value="headhunter" />
-                    <Picker.Item label="*Kingslayer: 1 point for every 2 wounds to enemy character non-monster or vehicle and 1 point for every 4 wounds to character with vehicle or monster keyword.   " value="kingslayer" />
-                    <Picker.Item label="*Marked for Death: Choose 4 of your opponent’s units with a Power Level of 7+. Earn 1 pt for each of these units destroyed." value="markedForDeath" />
-                    <Picker.Item label="Big Game Hunter: 1 point for every enemy model with the Monster or Vehicle keyword and 7+ wounds destroyed." value="bigGameHunter" />
-                    <Picker.Item label="*Titan Slayers: For every 8 wounds lost by enemy units with the Titanic keyword in total throughout the course of the game, earn 1 point. " value="titanSlayer" />
-                    <Picker.Item label="The Reaper: For every 20 enemy models destroyed, earn 1 point." value="reaper" />
-                    <Picker.Item label="Recon: Have a unit at least partially in each table quarter at the end of your player turn." value="recon" />
-                    <Picker.Item label="Behind Enemy Lines: If at least one of your units is wholly in the enemy Deployment Zone at the start of your turn, earn 1 Point." value="behindEnemyLines" />
-                    <Picker.Item label="The Butcher’s Bill: Destroy 2+ enemy units during a player turn to earn 1 Point." value="butchersBill" />
-                    <Picker.Item label="Ground Control: Earn 1 point for each objective held at the end of the last Battle Round played." value="groundControl" />
-                    <Picker.Item label="Old School: Earn 1 point for the following: First Strike, Slay the Warlord, Linebreaker, Last Strike" value="oldSchool" />
+
+                    {context.state.Secondaries.map(secondary => (
+                      <Picker.Item key={secondary.id} label={secondary.description} value={secondary.name} />
+                    ))}
 
                   </Picker>
                 </Item>
@@ -263,31 +232,30 @@ export default class SettingsScreen extends Component {
 
 
 
-                <Button
-                  onPress={() => {
-                    context.setSecondaries(this.state);
-                    console.log(this.state);
-                    this.props.navigation.navigate("RoundOne");
-                  }}
-                ><Text>Next</Text></Button>
+                <TouchableOpacity>
+                  <Button
+                  onPress={() => {context.setSecondaries(this.state)} }
+                  >
+                    <Text>set secondaries</Text>
+                    </Button>
 
+                  <Nextbutton
+                  path={"RoundOne"} />
 
-
-
-
-
-
-
+                </TouchableOpacity>
 
               </Form>
-              {context.state.playerOne.name ? (
-                <Text>{context.state.playerOne.name}</Text>
-              ) : (console.log(""))}
-
             </Content>
-          </Container>
-        )}
-      </AppConsumer>
+          )}
+        </AppConsumer>
+      </Container>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  button: {
+    margin: 5,
+  },
+});
+
