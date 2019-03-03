@@ -1,23 +1,19 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet } from 'react-native'
+import { Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { Container, Content, Form, Item, Input, Button, Picker } from 'native-base';
 
-// data
-import SecondariesData from '../utils/data/secondaries.json';
+import Nextbutton from '../components/NextButton'
 
 // context
 import { AppConsumer } from '../storage/AppContext'
+
 
 export default class SettingsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
-      Secondaries: SecondariesData,
-
       playerOne: {
         name: "",
-        points: 0,
         firstSecondary: "",
         secondSecondary: "",
         thirdSecondary: "",
@@ -25,7 +21,6 @@ export default class SettingsScreen extends Component {
 
       playerTwo: {
         name: "",
-        points: 0,
         firstSecondary: "",
         secondSecondary: "",
         thirdSecondary: "",
@@ -34,7 +29,8 @@ export default class SettingsScreen extends Component {
     }
   }
 
-  onValueChangeP1FirstSecondary(value) {
+  onValueChangeP1FirstSecondary = (value) => {
+
     const playerOne = { ...this.state.playerOne }
     playerOne.firstSecondary = value
     this.setState({
@@ -84,7 +80,7 @@ export default class SettingsScreen extends Component {
 
 
   static navigationOptions = {
-    title: 'Settings',
+    title: 'SELECT SECONDARIES',
     headerTintColor: '#ffffff',
     headerStyle: {
       backgroundColor: '#1e8fb5',
@@ -102,7 +98,6 @@ export default class SettingsScreen extends Component {
       <Container>
         <AppConsumer>
           {(context) => (
-
             <Content>
               <Form>
 
@@ -111,14 +106,17 @@ export default class SettingsScreen extends Component {
                     placeholder="Player One Name"
                     value={this.state.playerOne.name}
                     onChangeText={(text) => {
-                      const playerOne = { ...this.state.playerOne }
+                      const playerOne = { ...this.state.playerOne };
                       playerOne.name = text
                       this.setState({ playerOne })
+
+
+                      // let playerOneName = { ...this.state.playerOne.name };
+                      // playerOneName = text;
+                      // context.setNameP1(playerOneName)
                     }}
                   />
                 </Item>
-
-
 
                 <Item picker>
                   <Picker
@@ -130,7 +128,7 @@ export default class SettingsScreen extends Component {
 
                     <Picker.Item label="Select First Secondary" value="" />
 
-                    {this.state.Secondaries.map(secondary => (
+                    {context.state.Secondaries.map(secondary => (
                       <Picker.Item key={secondary.id} label={secondary.description} value={secondary.name} />
                     ))}
 
@@ -146,7 +144,7 @@ export default class SettingsScreen extends Component {
                   >
                     <Picker.Item label="Select Second Secondary" value="" />
 
-                    {this.state.Secondaries.map(secondary => (
+                    {context.state.Secondaries.map(secondary => (
                       <Picker.Item key={secondary.id} label={secondary.description} value={secondary.name} />
                     ))}
 
@@ -162,7 +160,7 @@ export default class SettingsScreen extends Component {
                   >
                     <Picker.Item label="Select Third Secondary" value="" />
 
-                    {this.state.Secondaries.map(secondary => (
+                    {context.state.Secondaries.map(secondary => (
                       <Picker.Item key={secondary.id} label={secondary.description} value={secondary.name} />
                     ))}
 
@@ -192,7 +190,7 @@ export default class SettingsScreen extends Component {
                   >
                     <Picker.Item label="Select First Secondary" value="" />
 
-                    {this.state.Secondaries.map(secondary => (
+                    {context.state.Secondaries.map(secondary => (
                       <Picker.Item key={secondary.id} label={secondary.description} value={secondary.name} />
                     ))}
 
@@ -208,7 +206,7 @@ export default class SettingsScreen extends Component {
                   >
                     <Picker.Item label="Select Second Secondary" value="" />
 
-                    {this.state.Secondaries.map(secondary => (
+                    {context.state.Secondaries.map(secondary => (
                       <Picker.Item key={secondary.id} label={secondary.description} value={secondary.name} />
                     ))}
 
@@ -224,23 +222,27 @@ export default class SettingsScreen extends Component {
                   >
                     <Picker.Item label="Select Third Secondary" value="" />
 
-                    {this.state.Secondaries.map(secondary => (
+                    {context.state.Secondaries.map(secondary => (
                       <Picker.Item key={secondary.id} label={secondary.description} value={secondary.name} />
                     ))}
 
                   </Picker>
                 </Item>
 
-                <Button
-                  style={styles.button}
-                  primary
-                  block
-                  onPress={() => {
-                    context.setSecondaries(this.state);
-                    console.log(this.state);
-                    this.props.navigation.navigate("RoundOne");
-                  }}
-                ><Text>Next</Text></Button>
+
+
+
+                <TouchableOpacity>
+                  <Button
+                  onPress={() => {context.setSecondaries(this.state)} }
+                  >
+                    <Text>set secondaries</Text>
+                    </Button>
+
+                  <Nextbutton
+                  path={"RoundOne"} />
+
+                </TouchableOpacity>
 
               </Form>
             </Content>

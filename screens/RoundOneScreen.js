@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Container, Content, Button, Text, ListItem, CheckBox, Body } from 'native-base';
+import { StyleSheet, View, Text } from 'react-native';
+import { Container, Content, Button, ListItem, CheckBox, Body } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 
 // components
@@ -31,12 +31,13 @@ export default class RoundOneScreen extends Component {
         <AppConsumer>
           {(context) => (
             <Content>
-
+              <Text>{context.state.playerOne.name}</Text>
+              <Text>==================</Text>
               <ListItem>
                 <CheckBox
                   checked={context.state.playerOne.roundOne_killOne}
                   onPress={() => {
-                    context.setCheck("Kill 1")
+                    context.setCheck("Kill 1", "playerOne")
                   }}
                 />
                 <Body>
@@ -48,7 +49,7 @@ export default class RoundOneScreen extends Component {
                 <CheckBox
                   checked={context.state.playerOne.roundOne_holdOne}
                   onPress={() => {
-                    context.setCheck("Hold One")
+                    context.setCheck("Hold One", "playerOne")
                   }}
                 />
                 <Body>
@@ -60,7 +61,7 @@ export default class RoundOneScreen extends Component {
                 <CheckBox
                   checked={context.state.playerOne.roundOne_holdMore}
                   onPress={() => {
-                    context.setCheck("Hold More")
+                    context.setCheck("Hold More", "playerOne")
                   }}
                 />
                 <Body>
@@ -72,7 +73,7 @@ export default class RoundOneScreen extends Component {
                 <CheckBox
                   checked={context.state.playerOne.roundOne_killMore}
                   onPress={() => {
-                    context.setCheck("Kill More")
+                    context.setCheck("Kill More", "playerOne")
                   }}
                 />
                 <Body>
@@ -84,7 +85,70 @@ export default class RoundOneScreen extends Component {
                 <CheckBox
                   checked={context.state.playerOne.roundOne_bonusObjective}
                   onPress={() => {
-                    context.setCheck("Bonus Objectives")
+                    context.setCheck("Bonus Objectives", "playerOne")
+                  }}
+                />
+                <Body>
+                  <Text>Bonus Objectives</Text>
+                </Body>
+              </ListItem>
+
+
+              <Text>{context.state.playerTwo.name}</Text>
+              <Text>==================</Text>
+              <ListItem>
+                <CheckBox
+                  checked={context.state.playerTwo.roundOne_killOne}
+                  onPress={() => {
+                    context.setCheck("Kill 1", "playerTwo")
+                  }}
+                />
+                <Body>
+                  <Text>Kill 1</Text>
+                </Body>
+              </ListItem>
+
+              <ListItem>
+                <CheckBox
+                  checked={context.state.playerTwo.roundOne_holdOne}
+                  onPress={() => {
+                    context.setCheck("Hold One", "playerTwo")
+                  }}
+                />
+                <Body>
+                  <Text>Hold One</Text>
+                </Body>
+              </ListItem>
+
+              <ListItem>
+                <CheckBox
+                  checked={context.state.playerTwo.roundOne_holdMore}
+                  onPress={() => {
+                    context.setCheck("Hold More", "playerTwo")
+                  }}
+                />
+                <Body>
+                  <Text>Hold More</Text>
+                </Body>
+              </ListItem>
+
+              <ListItem>
+                <CheckBox
+                  checked={context.state.playerTwo.roundOne_killMore}
+                  onPress={() => {
+                    context.setCheck("Kill More", "playerTwo")
+                  }}
+                />
+                <Body>
+                  <Text>Kill More</Text>
+                </Body>
+              </ListItem>
+
+              <ListItem>
+                <CheckBox
+                  checked={context.state.playerTwo.roundOne_bonusObjective}
+                  onPress={() => {
+                    context.setCheck("Bonus Objectives", "playerTwo")
                   }}
                 />
                 <Body>
