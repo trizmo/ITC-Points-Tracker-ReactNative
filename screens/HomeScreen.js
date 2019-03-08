@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import { Container, Text, Button } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
 // context
 import { AppConsumer } from '../storage/AppContext';
+
+const { height, width } = Dimensions.get("window")
+const windowWidth = width
+const windowHeight = height
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -42,22 +46,17 @@ export default class HomeScreen extends Component {
     // const { navigate } = this.props.navigation;
     return (
 
-      <Container style={styles.gridContainer}>
-        <Grid>
-          <Row style={styles.rowContainer}>
-
-            {this.state.fontLoaded ? (
-              <View>
-                <Button
-                  onPress={() => { this.props.navigation.navigate("Settings") }}
-                >
-                  <Text>Start</Text>
-                </Button>
-              </View>
-            ) : (console.log(""))}
-
-          </Row>
-        </Grid>
+      <Container style={styles.container}>
+        {this.state.fontLoaded ? (
+          <Button
+            info
+            large
+            style={{alignSelf: "center"}}
+            onPress={() => { this.props.navigation.navigate("Settings") }}
+          >
+            <Text>Start</Text>
+          </Button>
+        ) : <Text>LOADING</Text>}
       </Container>
 
     );
@@ -65,11 +64,10 @@ export default class HomeScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  rowContainer: {
-    justifyContent: "space-around",
-  },
-  gridContainer: {
+  container: {
     display: "flex",
-    alignContent: "center",
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
   },
 });
