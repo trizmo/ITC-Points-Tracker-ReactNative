@@ -52,7 +52,7 @@ export default class HomeScreen extends Component {
             info
             large
             style={{alignSelf: "center"}}
-            onPress={() => { this.props.navigation.navigate("Settings") }}
+            onPress={() => { this.props.navigation.navigate("SettingsNames") }}
           >
             <Text>Start</Text>
           </Button>
