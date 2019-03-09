@@ -1,11 +1,13 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import HomeScreen from '../screens/HomeScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import SettingsNamesScreen from '../screens/SettingsNamesScreen';
+import SettingsSecondariesScreen from '../screens/SettingsSecondariesScreen'
 import RoundOneScreen from '../screens/RoundOneScreen'
 
 const StackNavigator = createStackNavigator({
     Home: HomeScreen,
-    Settings: SettingsScreen,
+    SettingsNames: SettingsNamesScreen,
+    SettingsSecondaries: SettingsSecondariesScreen,
     RoundOne: RoundOneScreen
   });
   
