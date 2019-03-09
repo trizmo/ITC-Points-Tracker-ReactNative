@@ -13,8 +13,8 @@ A mobile points tracker system for Warhammer 40,000 ITC Tournaments
 * React Native
 
 # How to Use:
-Select START to create a new game. 
-Enter Both players names. 
-Select secondaries for each player. 
-  *remember to click "Set Secondaries"
+1. Select START to create a new game. 
+2. Enter Both players names. 
+3. Select secondaries for each player. 
+  * remember to click "Set Secondaries"
 
