@@ -30,7 +30,7 @@ export default class HomeScreen extends Component {
   }
 
   static navigationOptions = {
-    title: 'ITC Points Tracker',
+    title: 'ITC Points Tracker v1',
     headerTintColor: '#ffffff',
     headerStyle: {
       backgroundColor: '#1e8fb5',
@@ -51,8 +51,9 @@ export default class HomeScreen extends Component {
           <Button
             info
             large
+            rounded
             style={{alignSelf: "center"}}
-            onPress={() => { this.props.navigation.navigate("SettingsNames") }}
+            onPress={() => { this.props.navigation.navigate("PlayerNames") }}
           >
             <Text>Start</Text>
           </Button>

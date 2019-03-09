@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-import { Container, Button, Text } from 'native-base';
+import { StyleSheet, View } from 'react-native';
+import { Button, Text } from 'native-base';
 import { withNavigation } from 'react-navigation';
 
-
-class NextButton extends React.Component {
+class NextButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,32 +22,26 @@ class NextButton extends React.Component {
 
   render() {
     return (
-      <Container>
+      <View>
       {this.state.fontLoaded ? (
         <Button 
           small
-          style={styles.button}
+          info
+          rounded
+          style={this.props.style}
           onPress={() => { this.props.loadUnits, this.props.navigation.navigate(this.props.path) }}
+          press={() => this.props.press}
         >
           <Text>Next</Text>
         </Button>
-      ):<Text>"Font of NextButton not loaded"</Text>}
-    </Container>
+      ):<Text>"LOADING..."</Text>}
+    </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  button: {
-    margin: 20,
-    padding: 50,
-    paddingRight: 10,
-    paddingLeft: 10,
-    width: 180,
-    justifyContent: "center",
-    borderRadius: 10,
-    backgroundColor: "#e5b83b",
-  },
+
 })
 
 export default withNavigation(NextButton);
