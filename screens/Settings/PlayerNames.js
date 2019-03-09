@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Container, Content, Form, Item, Input, Button, Picker, Label } from 'native-base';
+import { StyleSheet, Dimensions } from 'react-native'
+import { Container, Item, Input, Label } from 'native-base';
 import { Grid, Row } from 'react-native-easy-grid'
 
-import Nextbutton from '../components/NextButton'
+import Nextbutton from '../../components/NextButton'
 
 // context
-import { AppConsumer } from '../storage/AppContext'
+import { AppConsumer } from '../../storage/AppContext'
 
+const { height, width } = Dimensions.get("window")
 
-export default class SettingsScreen extends Component {
+export default class PlayerNames extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,6 +25,10 @@ export default class SettingsScreen extends Component {
       }
 
     }
+  }
+
+  handleContextFunc = (func) => {
+    console.log(func)
   }
 
   static navigationOptions = {
@@ -78,11 +83,12 @@ export default class SettingsScreen extends Component {
                 </Item>
               </Row>
 
-              <Row size={7} style={styles.nextButton}>
-                <View>
-                  <Nextbutton
-                    path={"SettingsSecondaries"} />
-                </View>
+              <Row size={7} style={styles.buttons}>
+
+                <Nextbutton
+                style={styles.buttonItem}
+                  press={() => context.setNameP1(this.state)}
+                  path={"PlayerOneSecondaries"} />
               </Row>
 
 
@@ -95,26 +101,23 @@ export default class SettingsScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  button: {
-    margin: 5,
+  buttons: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  buttonItem: {
+    width: width / 2.2,
+    display: "flex",
+    justifyContent: "center"
   },
   form: {
-    // backgroundColor: "red",
     flexDirection: "column",
-    // flexWrap: "wrap",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
   formItem: {
     padding: 15,
     marginTop: 10,
     marginBottom: 10,
-  },
-  nextButton: {
-    display: "flex",
-    // flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    // alignItems: "stretch",
   },
 });
 

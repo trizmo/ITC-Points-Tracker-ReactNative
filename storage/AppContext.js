@@ -117,12 +117,21 @@ export default class AppProvider extends Component {
     })
   }
 
-  setNameP1 = (name) => {
+  setNameP1 = (data) => {
+    // console.log(data)
     let playerOne = { ...this.state.playerOne }
-    playerOne.name = name
-    this.setState({
-      playerOne
-    })
+    playerOne.name = data.playerOne.name
+
+    let playerTwo = { ...this.state.playerTwo }
+    playerTwo.name = data.playerTwo.name
+
+    this.setState(
+      {
+        playerOne: playerOne,
+        playerTwo: playerTwo
+      },
+      () => console.log(this.state)
+    )
   }
 
   render() {
