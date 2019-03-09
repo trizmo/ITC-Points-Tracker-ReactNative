@@ -1,6 +1,7 @@
 # ITC Points Tracker v1
 A mobile points tracker system for Warhammer 40,000 ITC Tournaments
 
+![Screenshots](./assets/screenshots.gif =300)
 
 
 # Quick Install (For Android)
